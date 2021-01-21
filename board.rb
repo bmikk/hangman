@@ -11,7 +11,6 @@ class Board
   end
 
   def find_blank_word(input_word)
-    #return the string but with each character replaced with a '_'
     blank_word = []
     input_word.length.times do 
       blank_word << '_'
