@@ -36,8 +36,8 @@
   #logic?
 
 
-  require_relative "./messages.rb"
-  require_relative "./game.rb"
+  require_relative "messages"
+  require_relative "game"
 
 module Hangman
 
@@ -67,10 +67,11 @@ module Hangman
       # 4 - quit the game
         # exit the program.
 
-    #WELCOME_MESSAGE
-    #NAME_MESSAGE?
-    name = gets.chomp
+    # # self.welcome_message()
+    # # self.name_message()
+    # name = gets.chomp
     game = Game.new(name)
+    game.play
 
 
 end

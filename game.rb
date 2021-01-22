@@ -5,28 +5,34 @@ require_relative "./serialization.rb"
 
 class Game
 
+  attr_reader :master_word
+  attr_accessor :board
+
   include Messages
   include Serialization
 
-  def initialize(player_name)
+  def initialize(player_name = 'Player')
     @player_name = player_name
     @master_word = get_word()
-    @board = Board.new(master_word)
+    @board = Board.new(@master_word)
+    @remaining_attempts = 6
   end
 
   def action_prompt
     action_message
     action = gets.chomp
-    if action != /'[1-4]'/
-
+    if !("1".."4").include?(action)
+      puts "Invalid selection! Try again."
+      action = action_prompt
     end
+    action
   end
 
   def letter_guess
     letter_guess_message
     guess = gets.chomp
     local_letters = board.word.chars
-    if master_word.include? guess
+    if master_word.include?(guess)
       guess_correct_message
       master_word.clone.chars.each_with_index do |master_char, master_index|
         if master_char == guess
@@ -37,7 +43,7 @@ class Game
     else
       guess_incorrect_message
       board.misses << guess
-      board.remaining_attempts -= 1
+      @remaining_attempts -= 1
       player_lose?
     end
   end
@@ -45,7 +51,7 @@ class Game
   def word_guess
     word_guess_message
     guess = gets.chomp
-    if guess == master_word
+    if guess.downcase == master_word.downcase
       player_win
     else
       guess_incorrect_message
@@ -53,7 +59,7 @@ class Game
   end
 
   def player_lose?
-    if board.remaining_attempts < 1
+    if @remaining_attempts < 1
       player_lose_message
       #end the game
     end
@@ -63,18 +69,34 @@ class Game
   end
 
   def player_turn
-
+    display_board
+    choice = action_prompt()
+    if choice == "1"
+      letter_guess
+    elsif choice == "2"
+      word_guess
+    elsif choice == "3"
+      #Save the game
+    elsif choice == "4"
+      #quit the game
+    else
+      puts "Something went wrong."
+    end
   end
 
   def display_board
+    puts "The Master Word is... #{@master_word}"
     #display_message
-    puts board.word
-    puts board.misses
-    puts board.remaining_attempts
+    puts board.blank_word
+    puts ""
+    puts "So far, you have guessed #{board.misses}"
+    puts "You have #{@remaining_attempts} remaining attempts."
   end
 
   def play
-
+    while @remaining_attempts > 0 do
+      player_turn()
+    end
   end
 
 
