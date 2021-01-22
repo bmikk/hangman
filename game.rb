@@ -13,7 +13,7 @@ class Game
 
   def initialize(player_name = 'Player')
     @player_name = player_name
-    @master_word = get_word()
+    @master_word = get_word().downcase
     @board = Board.new(@master_word)
     @remaining_attempts = 6
   end
@@ -31,14 +31,14 @@ class Game
   def letter_guess
     letter_guess_message
     guess = gets.chomp
-    local_letters = board.word.chars
+    local_letters = board.blank_word.chars.map { |char| char == ' ' ? next : char }
     if master_word.include?(guess)
       guess_correct_message
       master_word.clone.chars.each_with_index do |master_char, master_index|
         if master_char == guess
           local_letters[master_index] = guess
         end
-        board.word = local_letters.join('')
+        board.blank_word = local_letters.join(' ')
       end
     else
       guess_incorrect_message
