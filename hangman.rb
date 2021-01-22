@@ -39,7 +39,7 @@
   require_relative "./messages.rb"
   require_relative "./game.rb"
 
-  module Hangman
+module Hangman
 
     include Messages
 
@@ -73,4 +73,4 @@
     game = Game.new(name)
 
 
-  end
+end

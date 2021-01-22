@@ -1,4 +1,4 @@
-require_relative "./5desk.txt."
+require "./5desk.txt."
 
 module Serialization
 

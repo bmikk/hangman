@@ -19,6 +19,9 @@ class Game
     action = gets.chomp
     if action != /'[1-4]'/
 
+    end
+  end
+
   def letter_guess
     letter_guess_message
     guess = gets.chomp

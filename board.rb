@@ -21,6 +21,6 @@ class Board
 
 
 
-  end
+  
 
 end
