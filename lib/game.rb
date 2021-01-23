@@ -76,7 +76,7 @@ class Game
     elsif choice == "2"
       word_guess
     elsif choice == "3"
-      #Save the game
+      save_game(self)
     elsif choice == "4"
       #quit the game
     else

@@ -1,3 +1,5 @@
+require "yaml"
+
 
 module Serialization
 
@@ -16,6 +18,23 @@ module Serialization
   end
   
   #SAVE_GAME
+  def save_game(game_instance)
+    #first, determine if there is an output directory, if not, make one
+    #make a file that can be used to write the contents of the game_instance
+    #write the contents 
+    #close the file
+    
+    Dir.mkdir('saved_games') unless Dir.exists?('saved_games')
+
+    puts "What you would like name your game?"
+    filename = "saved_games/hangman_#{game_instance.player_name}.txt"
+
+    serialized_game = YAML.dump(game_instance)
+
+    File.open(filename, 'w') do |file|
+      file.puts serialized_game
+    end
+  end
 
   #LOAD_GAME
 

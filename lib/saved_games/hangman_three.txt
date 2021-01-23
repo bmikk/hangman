@@ -1,0 +1,9 @@
+--- !ruby/object:Game
+player_name: ben
+master_word: three
+board: !ruby/object:Board
+  word: three
+  blank_word: ____
+  misses: []
+remaining_attempts: 6
+game_over: false
