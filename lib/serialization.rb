@@ -12,7 +12,7 @@ module Serialization
       end
     end
     local_file.close
-    return words.sample
+    return words.sample.downcase.chomp
   end
   
   #SAVE_GAME

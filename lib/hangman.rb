@@ -66,12 +66,19 @@ module Hangman
         # save the game and prompt again
       # 4 - quit the game
         # exit the program.
-
-    # # self.welcome_message()
-    # # self.name_message()
-    # name = gets.chomp
+    puts ""
+    puts ""    
+    puts "---------- Welcome to Hangman! ----------"
+    puts ""
+    puts "What is your name?"
+    puts ""
+    name = gets.chomp
     game = Game.new(name)
     game.play
+    while game.play_again?
+      game = Game.new(name)
+      game.play
+    end 
 
 
 end

@@ -13,9 +13,10 @@ class Game
 
   def initialize(player_name = 'Player')
     @player_name = player_name
-    @master_word = get_word().downcase
+    @master_word = get_word()
     @board = Board.new(@master_word)
     @remaining_attempts = 6
+    @game_over = false
   end
 
   def action_prompt
@@ -38,7 +39,7 @@ class Game
         if master_char == guess
           local_letters[master_index] = guess
         end
-        board.blank_word = local_letters.join(' ')
+        board.blank_word = local_letters.join('')
       end
     else
       guess_incorrect_message
@@ -51,21 +52,20 @@ class Game
   def word_guess
     word_guess_message
     guess = gets.chomp
-    if guess.downcase == master_word.downcase
-      player_win
-    else
-      guess_incorrect_message
-    end
+    guess == @master_word ? player_win : guess_incorrect_message
   end
 
   def player_lose?
     if @remaining_attempts < 1
       player_lose_message
+      @game_over = true
       #end the game
     end
   end
 
   def player_win
+    player_win_message(@player_name)
+    @game_over = true
   end
 
   def player_turn
@@ -84,21 +84,17 @@ class Game
     end
   end
 
-  def display_board
-    puts "The Master Word is... #{@master_word}"
-    #display_message
-    puts board.blank_word
-    puts ""
-    puts "So far, you have guessed #{board.misses}"
-    puts "You have #{@remaining_attempts} remaining attempts."
-  end
-
   def play
     while @remaining_attempts > 0 do
       player_turn()
+      @game_over == true ? break : next
     end
   end
 
-
+  def play_again?
+    puts "Would you like to play again? [Y/N]"
+    input = gets.chomp
+    input.downcase == "y" ? true : false
+  end
 
 end
