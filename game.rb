@@ -59,7 +59,6 @@ class Game
     if @remaining_attempts < 1
       player_lose_message
       @game_over = true
-      #end the game
     end
   end
 
@@ -78,7 +77,7 @@ class Game
     elsif choice == "3"
       save_game(self)
     elsif choice == "4"
-      #quit the game
+      exit
     else
       puts "Something went wrong."
     end
