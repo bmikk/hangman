@@ -1,0 +1,12 @@
+--- !ruby/object:Game
+player_name: bob
+master_word: susanna
+board: !ruby/object:Board
+  word: susanna
+  blank_word: _u_a__a
+  misses:
+  - t
+  - i
+  - e
+remaining_attempts: 3
+game_over: false
