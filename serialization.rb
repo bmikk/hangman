@@ -8,7 +8,7 @@ module Serialization
     local_file = File.open('5desk.txt', 'r')
     while !local_file.eof?
       line = local_file.readline
-      puts line
+      #puts line
       unless line.length < 5 || line.length > 12
         words << line
       end
@@ -27,13 +27,19 @@ module Serialization
     Dir.mkdir('saved_games') unless Dir.exists?('saved_games')
 
     puts "What you would like name your game?"
-    filename = "saved_games/hangman_#{game_instance.player_name}.txt"
+    input = gets.chomp
+
+    filename = "saved_games/hangman_#{game_instance.player_name}_#{input}.txt"
+    
+    #filename = "saved_games/hangman_#{game_instance.player_name}.txt"
 
     serialized_game = YAML.dump(game_instance)
 
     File.open(filename, 'w') do |file|
       file.puts serialized_game
     end
+
+    puts "Your game was saved as #{filename}"
   end
 
   #LOAD_GAME

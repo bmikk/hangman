@@ -1,0 +1,9 @@
+--- !ruby/object:Game
+player_name: Reuben
+master_word: reiteration
+board: !ruby/object:Board
+  word: reiteration
+  blank_word: __________
+  misses: []
+remaining_attempts: 6
+game_over: false

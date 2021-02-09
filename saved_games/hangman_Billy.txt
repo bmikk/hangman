@@ -1,0 +1,9 @@
+--- !ruby/object:Game
+player_name: Billy
+master_word: gorge
+board: !ruby/object:Board
+  word: gorge
+  blank_word: ____
+  misses: []
+remaining_attempts: 6
+game_over: false

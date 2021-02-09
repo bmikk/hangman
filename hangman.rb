@@ -27,7 +27,7 @@
   #else, repeat the turn process starting from the prompt asking if the player would like to guess the word.
 
 
-#classes?
+#classes? Remember, use a class when an element IS something, and use a module when an element HAS something
   #Game? Need to make a new game object, so yes.
     #includes: display, logic, SaveGame?, LoadGame?,
   #[something to do with reading the file?]
@@ -35,7 +35,7 @@
   #display?
   #logic?
 
-
+  require 'yaml'
   require_relative "messages"
   require_relative "game"
 
@@ -73,12 +73,35 @@ module Hangman
     puts "What is your name?"
     puts ""
     name = gets.chomp
-    game = Game.new(name)
-    game.play
+    puts "Hello #{name}!"
+    puts "Would you like to load a previous game? Y/N"
+    input = gets.chomp
+
+    if input.downcase == "y"
+      #play the game with a loaded save
+      puts "Which game would you like to load? Input the file name."
+      filename = gets.chomp
+      puts "Loading file..."
+      if File.exist?(filename)
+        #load the file
+        game = YAML.load(File.read(filename))
+        game.play
+      else
+        puts "Oops! Looks like that file doesn't exist. Let's play a new game instead."
+        game = Game.new(name)
+        game.play
+      end
+    else
+      game = Game.new(name)
+      game.play
+    end
     while game.play_again?
       game = Game.new(name)
       game.play
     end 
+
+
+    
 
 
 end

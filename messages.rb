@@ -51,7 +51,7 @@ module Messages
 
   #BOARD_DISPLAY MESSAGE
   def display_board
-    puts "The Master Word is... #{@master_word}"
+    #puts "The Master Word is... #{@master_word}"
     #display_message
     display_blank_word
     puts ""

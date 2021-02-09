@@ -1,0 +1,9 @@
+--- !ruby/object:Game
+player_name: Tony
+master_word: unbidden
+board: !ruby/object:Board
+  word: unbidden
+  blank_word: _______
+  misses: []
+remaining_attempts: 6
+game_over: false

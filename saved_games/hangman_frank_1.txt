@@ -1,0 +1,9 @@
+--- !ruby/object:Game
+player_name: Frank
+master_word: winnebago
+board: !ruby/object:Board
+  word: winnebago
+  blank_word: ________
+  misses: []
+remaining_attempts: 6
+game_over: false

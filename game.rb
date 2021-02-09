@@ -5,7 +5,7 @@ require_relative "./serialization.rb"
 
 class Game
 
-  attr_reader :master_word
+  attr_reader :master_word, :player_name
   attr_accessor :board
 
   include Messages
@@ -85,6 +85,7 @@ class Game
   end
 
   def play
+    puts "Let's play, #{@player_name}! Here we go!"
     while @remaining_attempts > 0 do
       player_turn()
       @game_over == true ? break : next
