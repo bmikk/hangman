@@ -41,8 +41,4 @@ module Hangman
       game.play
     end 
 
-
-    
-
-
 end

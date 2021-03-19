@@ -1,6 +1,5 @@
 
 
-
 module Messages
 
   #WELCOME_MESSAGE

@@ -19,9 +19,4 @@ class Board
     return blank_word.join('')
   end
 
-
-
-
-  
-
 end
